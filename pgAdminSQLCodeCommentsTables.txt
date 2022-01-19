@@ -78,17 +78,11 @@ CREATE TABLE titles (
   	to_date DATE NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
   PRIMARY KEY (emp_no)
-);
+)
 
--- DONT FORGET THE SEMICOLON!! 
 -- Does indention matter? How do we know what the foriegn keya dn references are? 
 -- After running the code above, we have successefully made the tables that we will want to pull the csv files into 
 
--- Query for Confirmation 
-SELECT * FROM departments; 
--- This selects everything from the departments table and shows it below 
--- This is so we can double check that we have made our table correctly.
 
--- You can also save SQL files as .sql in VSCode
--- Is there any specific advantage to saving it as a sql file in VSCode vs saving it as a notepad file? 
-	
+
+
