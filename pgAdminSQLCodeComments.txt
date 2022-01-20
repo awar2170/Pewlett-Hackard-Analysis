@@ -71,24 +71,133 @@ FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
 	PRIMARY KEY (emp_no, dept_no)
 );
 
+-- DROP TABLE titles CASCADE 
+-- The above code gets rid of a table and all the conenctions it has with other tables 
+-- Litterally think of the connectionf low chart you made in the beginning 
+-- That's super useful for visualization 
+
 CREATE TABLE titles (
 	emp_no INT NOT NULL,
   	title VARCHAR(40) NOT NULL,
   	from_date DATE NOT NULL,
   	to_date DATE NOT NULL,
-	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-  PRIMARY KEY (emp_no)
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+	PRIMARY KEY (emp_no, title, from_date)
 );
+
+-- We have to include multiple primary keys so that it is unique
 
 -- DONT FORGET THE SEMICOLON!! 
 -- Does indention matter? How do we know what the foriegn keya dn references are? 
 -- After running the code above, we have successefully made the tables that we will want to pull the csv files into 
 
 -- Query for Confirmation 
-SELECT * FROM departments; 
+SELECT * FROM dept_emp; 
 -- This selects everything from the departments table and shows it below 
 -- This is so we can double check that we have made our table correctly.
 
 -- You can also save SQL files as .sql in VSCode
 -- Is there any specific advantage to saving it as a sql file in VSCode vs saving it as a notepad file? 
-	
+
+-- ** IMPORTING DATA ** 
+-- You can manually add a single row of data with the INSERT statement 
+-- We wont be manually editing or uploading data to our tables in this lesson because our datasets are too large 
+
+-- Remember to:
+
+--    Find the correct CSV file to upload using the "filepath" field.
+--    Toggle the "Header" field to "Yes."
+--    Select a comma as the delimiter
+
+-- **COMMON ERRORS** 
+-- If you mess up a table, delete the table and start over, because 
+-- SQL doesn't allow for overrides or duplicates because of data security 
+-- Use the DROP TABLE statement to get rid of a previously created table
+
+-- **ADDITIONAL NOTES ON ERRORS WITH THE TITLES TABLE** 
+-- When applying a primary key to an sql table it has to be unique, and by including 
+-- both emp_no, title, and from_date in the Primary Key for the titles table, that 
+-- made the indexing for this table to be dependent on both the emp_no and 
+-- title columns in the table.  This got rid of the repeated value error because 
+-- it was now factoring in the second column as well as part of the unique "index"
+
+-- **QUERY DATES** 
+-- DetermineRetirement Eligibility 
+
+SELECT  first_name, last_name 
+FROM employees 
+WHERE  birth_date BETWEEN '1952-01-01' AND '1995-12-31';
+
+-- The above code will select the first_name and last_name columns 
+-- FROM the employees table 
+-- and will filter for WHERE the column birth_date is 
+-- BETWEEN 1952-01-01 AND 1995-12-31
+
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1952-01-01' AND '1952-12-31';
+
+-- The above code follows similar logic as before, but it only takes the people born in 1952 into account 
+-- DONT FORGET TO END WITH A SEMICOLON
+
+-- **SKILL DRILL: Write Questries for employees born in 1953, 1954, and 1955**
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1953-01-01' AND '1953-12-31';
+
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1954-01-01' AND '1954-12-31';
+
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1955-01-01' AND '1955-12-31';
+
+-- Narrow the Search for Retirement Eligibility  
+-- Original Query: 
+SELECT first_name, last_name
+FROM employees
+WHERE birth_date BETWEEN '1952-01-01' AND '1955-12-31';
+-- Modification 1, Parentehses; Mod2: Additional AND Statement: 41380
+SELECT first_name, last_name
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+
+-- Count the Queries 
+-- Number of employees retiring 
+SELECT COUNT(first_name)
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+-- The only difference in this code above and the previous code is the 
+-- addition of the SELECT COUNT function to start off 
+-- This counts it instead of listing all the outcomes 
+
+-- Create New Tables 
+-- Now that we have the data that we want, how do we export it easily? 
+-- put it on a table an export that table 
+-- This is the data that we want on file: 
+SELECT first_name, last_name
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+-- Add the INTO table_name code below: 
+SELECT first_name, last_name
+INTO retirement_info
+FROM employees
+WHERE (birth_date BETWEEN '1952-01-01' AND '1955-12-31')
+AND (hire_date BETWEEN '1985-01-01' AND '1988-12-31');
+-- Just running the 5 chunk block above will get us what we want 
+-- It creates a table called retirement_info and takes all the infomration from the 
+-- previous query and puts it in that table 
+-- Now after running this code adn refreshing the tables, we now have a retirement_info table 
+
+-- View the retirement_info table: 
+SELECT * FROM retirement_info;
+
+-- WHEN TRYING TO EXPORT THE FILE, MAKE SURE WHEN YOU"RE NAMING IT  IN THE DIRECTORY, 
+-- INCLUDE .CSV AT TEH END OF THE NA,E, OTHERWISE IT WILL BE A VSCODE FILE 
+-- AND NOT AN EXCEL FILE 
+-- INCLUDE .CSV IN TEH NAME!!!
+
