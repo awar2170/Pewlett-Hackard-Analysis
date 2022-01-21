@@ -13,7 +13,7 @@ The purpose of this analysis is to determine the number of retiring employees pe
   - 2 Managers are retiring
 Source: 
 
-- 1549 total employees are eligible to particplate in the mentorship program 
+- 1549 total employees are eligible to participate in the mentorship program 
   - 169 Senior Engineers are eligible to mentor
   - 569 Senior Staff are eligible to mentor
   - 501 Engineers are eligible to mentor
@@ -24,4 +24,6 @@ Source:
 
 ## Summary 
 ### How many roles will need to be filled as the "silver tsunami" begins to make an impact? 
+- 72458 roles will need to be filled.
 ### Are there enough qualified, retirement-ready employees in the departments to mentor the next generation of Pewlett Hackard employees? 
+- There are not enough employees to mentor the next generation of people.  Pewlett Hackard will probably have to reach out to contact people to make up for the lack of people working while they try to find people to fill the roles they need. 
