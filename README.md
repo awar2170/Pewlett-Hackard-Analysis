@@ -11,6 +11,7 @@ The purpose of this analysis is to determine the number of retiring employees pe
   - 3603 Technique Leaders are retiring
   - 1090 Assistant Engineers are retiring
   - 2 Managers are retiring
+
 Source: [Retiring Titles](https://github.com/awar2170/Pewlett-Hackard-Analysis/blob/main/Data/retiring_titles.csv)
 
 - 1549 total employees are eligible to participate in the mentorship program 
@@ -20,6 +21,7 @@ Source: [Retiring Titles](https://github.com/awar2170/Pewlett-Hackard-Analysis/b
   - 155 Staff are eligible to mentor 
   - 77 Technique Leaders are eligible to mentor
   - 78 Assistant Engineers are eligible to mentor
+
 Source: [Mentorship Titles](https://github.com/awar2170/Pewlett-Hackard-Analysis/blob/main/Data/mentorship_titles.csv)
 
 ## Summary 
